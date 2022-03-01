@@ -10,11 +10,11 @@ export default class PortfolioContainer extends Component {
             pageTitle: 'Welcome to something confusing',
             isLoading: false,
             data: [
-                {title: 'Gaming', catergory: 'Variety'},
-                {title: 'Twitch', catergory: "Entertainment"}, 
-                {title: 'TikTok', catergory: "Entertainment"}, 
-                {title: 'YouTube', catergory: "Entertainment"}, 
-                {title: 'My Own Video Game', catergory: 'Solo'}
+                {title: 'Gaming', catergory: 'Variety', slug: 'Gaming'},
+                {title: 'Twitch', catergory: "Entertainment", slug: 'Twitch'}, 
+                {title: 'TikTok', catergory: "Entertainment", slug: 'TikTok'}, 
+                {title: 'YouTube', catergory: "Entertainment", slug: 'Uoutube'}, 
+                {title: 'My Own Video Game', catergory: 'Solo', slug: 'Video-Game'}
             ]
         };
         this.handleFilter = this.handleFilter.bind(this)
@@ -31,7 +31,7 @@ export default class PortfolioContainer extends Component {
 
     portfolioItems() {
         return this.state.data.map(item => {
-          return <PortfolioItem title={item.title} url={"google.com"} />;
+          return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug} />;
         });
       }
 
