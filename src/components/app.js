@@ -1,25 +1,43 @@
 import React, { Component } from 'react';
-import moment from "moment"
+import moment from "moment";
+import Axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
   Route
-} from 'react-router-dom'
+} from 'react-router-dom';
 
-import NavigationContainer from './navigation/navigation-container'
+import NavigationContainer from './navigation/navigation-container';
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Blog from "./pages/blog";
 import PortfolioDetail from "./portfolio/portfolio-detail";
-import NoMatch from "./pages/no-match"
+import NoMatch from "./pages/no-match";
 
 export default class App extends Component {
   constructor() {
     super();
-    console.log("Portfolio is ready");
+
+    this.getPortfolioItems = this.getPortfolioItems.bind(this);
   }
+  getPortfolioItems() {
+    Axios
+    .get('https://trueescape.devcamp.space/portfolio/portfolio_items')
+    .then(response => {
+      console.log('response data', response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+  }
+
   render() {
+    this.getPortfolioItems();
     return (
       <div className='app'>
         <h1>Matthew Hoecker Portfolio</h1>
@@ -40,8 +58,6 @@ export default class App extends Component {
             </Switch>
           </div>
         </Router>
-
-
       </div>
     );
   }
