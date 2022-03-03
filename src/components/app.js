@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from "moment";
-import Axios from 'axios';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,43 +16,22 @@ import PortfolioDetail from "./portfolio/portfolio-detail";
 import NoMatch from "./pages/no-match";
 
 export default class App extends Component {
-  constructor() {
-    super();
-
-    this.getPortfolioItems = this.getPortfolioItems.bind(this);
-  }
-  getPortfolioItems() {
-    Axios
-    .get('https://trueescape.devcamp.space/portfolio/portfolio_items')
-    .then(response => {
-      console.log('response data', response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-  }
-
   render() {
-    this.getPortfolioItems();
     return (
       <div className='app'>
-        <h1>Matthew Hoecker Portfolio</h1>
-        <h3>
-          {moment().format('MMMM Do YYYY, h:mm:ss a')}
-        </h3>
         <Router>
           <div>
+            <h1>Matthew Hoecker Portfolio</h1>
+            <h3>
+              {moment().format('MMMM Do YYYY, h:mm:ss a')}
+            </h3>
             <NavigationContainer />
 
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/about-me" component={About} />
-              <Route path="/contact" component={Contact} />
               <Route path="/blog" component={Blog} />
+              <Route path="/contact" component={Contact} />
               <Route exact path="/portfolio/:slug" component={PortfolioDetail} />
               <Route component={NoMatch} />
             </Switch>

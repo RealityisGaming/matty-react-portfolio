@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Axios from 'axios';
 
 import PortfolioItem from "./portfolio-item";
 
@@ -7,17 +8,11 @@ export default class PortfolioContainer extends Component {
         super();
         
         this.state = {
-            pageTitle: 'Welcome to something confusing',
+            pageTitle: "Welcome to something surprising",
             isLoading: false,
-            data: [
-                {title: 'Gaming', catergory: 'Variety', slug: 'Gaming'},
-                {title: 'Twitch', catergory: "Entertainment", slug: 'Twitch'}, 
-                {title: 'TikTok', catergory: "Entertainment", slug: 'TikTok'}, 
-                {title: 'YouTube', catergory: "Entertainment", slug: 'Uoutube'}, 
-                {title: 'My Own Video Game', catergory: 'Solo', slug: 'Video-Game'}
-            ]
+            data: []
         };
-        this.handleFilter = this.handleFilter.bind(this)
+        this.handleFilter = this.handleFilter.bind(this);
 
     }
     
@@ -29,17 +24,39 @@ export default class PortfolioContainer extends Component {
         })
     }
 
-    portfolioItems() {
-        return this.state.data.map(item => {
-          return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug} />;
+    getPortfolioItems() {
+        Axios
+        .get('https://trueescape.devcamp.space/portfolio/portfolio_items')
+        .then(response => {
+            this.setState({
+                data: response.data.portfolio_items
+            })
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
         });
       }
 
+    portfolioItems() {
+        return this.state.data.map(item => {
+          return <PortfolioItem key={item.id} item={item} />;
+        });
+      }
+    
+    componentDidMount() {
+        this.getPortfolioItems();
+    }
 
     render() {
         if(this.state.isLoading) {
             return <div>Loading...</div>
         }
+
+        
         return(
             <div>
                 <h2>{this.state.pageTitle}</h2>
@@ -55,7 +72,6 @@ export default class PortfolioContainer extends Component {
                 </button>
                 
                 {this.portfolioItems()}
-
             </div>
             
         )
