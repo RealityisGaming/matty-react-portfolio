@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default class PortfolioItem extends Component {
   constructor(props) {
@@ -15,23 +15,23 @@ export default class PortfolioItem extends Component {
   }
 
   handleMouseLeave() {
-    this.setState({portfolioItemClass: ""});
+    this.setState({portfolioItemClass: "image-unblur"});
   }
   render() {
-    const {id, description, thumb_image_url, logo} = this.props.item;
+    const {id, description, thumb_image_url, logo_url} = this.props.item;
     return (
       <div className="portfolio-item-wrapper" onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
         <div className={"portfolio-img-background " + this.state.portfolioItemClass} style={{backgroundImage: "url(" + thumb_image_url + ")"}}/>
 
         <div className="img-text-container">
           <div className="logo-container">
-            <img src={logo}/>
+            <img src={logo_url}/>
           </div>
 
           <div className="subtitle">{description}</div>
         </div>
 
-        <Link to={`/portfolio/${id}`}>Link</Link>
+        {/* <Link to={`/portfolio/${id}`}>Link</Link> */}
 
       </div>
     )

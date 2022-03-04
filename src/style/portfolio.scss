@@ -31,7 +31,7 @@
             }
         }
 
-        .img-text-wrapper:hover .subtitle {
+        .img-text-container:hover .subtitle {
             color: $teal;
             font-weight: 400;
         }
@@ -45,4 +45,9 @@
 .image-blur {
     transition: 1s;
     filter: brightness(10%);
+}
+
+.image-unblur {
+    transition: 1s;
+    filter: brightness(100%);
 }
