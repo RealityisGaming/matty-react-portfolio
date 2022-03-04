@@ -36,7 +36,7 @@ export default class NavigationComponent extends Component {
                     {false ? <button>Add Blog</button> : null}
                 </div>
 
-                <div className='right-side'>Matthew Hoecker's Portfolio</div>
+                <div className='right-side'>Matthew Hoecker</div>
             </div>
     )
   }
