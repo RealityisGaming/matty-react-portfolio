@@ -2,8 +2,18 @@ import React from 'react'
 
 
 const PortfolioSidebarList = (props) => {
+    const portfolioList = props.data.map(portfolioItem =>  {
+        return (
+            <div key={portfolioItem.id} className="portfolio-image-thumb">
+                    <div className='portfolio-thumb-img'>
+                        <img src={portfolioItem.thumb_image_url}></img>
+                    </div>
+                    <h1 className='title'>{portfolioItem.name}</h1>
+                    <h2>{portfolioItem.id}</h2>
+            </div>
+        )
+    })
 
-
-    return  <h1>Hello there list</h1>
+    return  <div className='portfolio-sidebar-list-container'>{portfolioList}</div>
 }
-export default PortfolioSidebarList
+export default PortfolioSidebarList;

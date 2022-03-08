@@ -73,7 +73,7 @@ export default class App extends Component {
 
   authorizedPages() {
     return [ 
-      <Route exact path="/portfolio/:slug" component={PortfolioDetail} />
+      <Route key="portfolio-manager" path="/portfolio-manager" component={PortfolioManager} />
     ];
   }
 
@@ -91,13 +91,11 @@ export default class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/auth" render={props =>  (
-                <Auth {...props} handleSuccessfulLogin= {this.handleSuccessfulLogin} handleUnsuccessfulLogin={this.handleUnSuccesfulLogin}/>
-              )} />
+                <Auth {...props} handleSuccessfulLogin= {this.handleSuccessfulLogin} handleUnsuccessfulLogin={this.handleUnSuccesfulLogin}/>)} />
               <Route path="/about-me" component={About} />
-              <Route path="/blog" component={Blog} />
               <Route path="/contact" component={Contact} />
               {this.state.loggedInStatus === "LOGGED_IN" ? this.authorizedPages() : null};
-              <Route path="/portfolio-manager" component={PortfolioManager} />
+              <Route path="/portfolio/:slug" component={PortfolioDetail} />
               <Route path="/blog" component={Blog} />,
               <Route component={NoMatch} />
             </Switch>
