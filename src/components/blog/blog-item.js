@@ -7,16 +7,25 @@ const BlogItem = props => {
         blog_status,
         content,
         title,
-        featured_image
+        featured_image_url
     } = props.blogItem;
 
     return ( 
-        <div>
-            <Link to={`/b/${id}`}>
-                <h1>{title}</h1>
-            </Link>
-            <div>
-                {content}
+        <div className='blog-container'>
+            <div className='content-container'>
+                <Link to={`/b/${id}`}>
+                    <h1>{title}</h1>
+                </Link>
+                <div>
+                    {content}
+                </div>
+
+                <div className='content-container'>
+                    <img src={featured_image_url} />
+                </div>
+
+                {blog_status}
+
             </div>
         </div>
     );

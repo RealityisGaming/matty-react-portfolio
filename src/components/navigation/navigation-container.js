@@ -32,7 +32,7 @@ const NavigationComponent = props => {
 
     return (
         <div className='nav-container'>
-            <div className='left-side'>
+            {/* <div className='left-side'>
                 <div className='nav-link-wrapper'>
                     <NavLink exact to="/" activeClassName='nav-link-active'>
                         Home
@@ -57,7 +57,7 @@ const NavigationComponent = props => {
 
                 {props.loggedInStatus === "LOGGED_IN" ? dynamicLink("/portfolio-manager", "Portfolio Manager") : null}
                 {false ? <button>Add Blog</button> : null}
-            </div>
+            </div> */}
 
             <div className='right-side'>
                 Matthew Hoecker

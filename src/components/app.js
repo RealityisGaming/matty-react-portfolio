@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route,} from 'react-router-dom';
 import axios from "axios"
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSignOutAlt, faTrash, faEdit} from "@fortawesome/free-solid-svg-icons"
+import {faSignOutAlt, faTrash, faEdit, faSpinner} from "@fortawesome/free-solid-svg-icons"
 
 import NavigationContainer from './navigation/navigation-container';
 import Home from "./pages/home";
@@ -16,7 +16,7 @@ import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
 
-library.add(faTrash, faSignOutAlt, faEdit)
+library.add(faTrash, faSignOutAlt, faEdit, faSpinner)
 
 export default class App extends Component {
   constructor(props){
@@ -95,7 +95,8 @@ export default class App extends Component {
             <h2>{this.state.loggedInStatus}</h2>
 
             <Switch>
-              <Route exact path="/" component={Home} />
+              {/* <Route exact path="/" component={Home} /> */}
+              <Route exact path="/" component={NoMatch} />
               <Route path="/auth" render={props =>  (
                 <Auth {...props} handleSuccessfulLogin= {this.handleSuccessfulLogin} handleUnsuccessfulLogin={this.handleUnSuccesfulLogin}/>)} />
               <Route path="/about-me" component={About} />
@@ -104,7 +105,7 @@ export default class App extends Component {
               <Route path="/portfolio/:slug" component={PortfolioDetail} />
               <Route path="/blog" component={Blog} />
               <Route path="/b/:slug" component={BlogDetail} />
-              <Route component={NoMatch} />
+              {/* <Route path="*" component={NoMatch} /> */}
             </Switch>
           </div>
         </Router>
